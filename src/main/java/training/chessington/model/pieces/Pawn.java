@@ -22,16 +22,17 @@ public class Pawn extends AbstractPiece {
             if (from.getRow() == 6) {
                 allowedMoves.add(new Move(from, from.plus(-2, 0)));
             }
-            if ((board.get(from.plus(-1, 0)) == null)) {
+            if ((from.getRow() != 0) && ((board.get(from.plus(-1, 0)) == null))) {
                 allowedMoves.add(new Move(from, from.plus(-1, 0)));
             }
+
         }
 
         if (colour.equals(PlayerColour.BLACK)) {
             if (from.getRow() == 1) {
                 allowedMoves.add(new Move(from, from.plus(2, 0)));
             }
-            if ((board.get(from.plus(1, 0)) == null)) {
+            if ((from.getRow() != 7) && ((board.get(from.plus(1, 0)) == null))) {
                 allowedMoves.add(new Move(from, from.plus(1, 0)));
             }
         }
