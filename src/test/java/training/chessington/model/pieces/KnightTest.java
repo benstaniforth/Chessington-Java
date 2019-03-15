@@ -1,5 +1,6 @@
 package training.chessington.model.pieces;
 
+import javafx.scene.input.PickResult;
 import org.junit.Test;
 import training.chessington.model.Board;
 import training.chessington.model.Coordinates;
@@ -20,17 +21,27 @@ public class KnightTest {
         Board board = Board.empty();
 
         Piece whiteKnight = new Knight(PlayerColour.WHITE);
-        Coordinates coords = new Coordinates(4, 4);
-        board.placePiece(coords, whiteKnight);
+        Coordinates whiteCoords = new Coordinates(3, 3);
+        board.placePiece(whiteCoords, whiteKnight);
+
+        Piece blackKnight = new Knight(PlayerColour.BLACK);
+        Coordinates blackCoords = new Coordinates(5, 5);
+        board.placePiece(blackCoords, whiteKnight);
 
         // Act
-        List<Move> moves = whiteKnight.getAllowedMoves(coords, board);
+        List<Move> whiteMoves = whiteKnight.getAllowedMoves(whiteCoords, board);
+        List<Move> blackMoves = blackKnight.getAllowedMoves(blackCoords, board);
 
         // Assert
-        assertThat(moves).containsExactlyInAnyOrder(new Move(coords, coords.plus(-1, -2)));
-        assertThat(moves).containsExactlyInAnyOrder(new Move(coords, coords.plus(1, -2)));
-        assertThat(moves).containsExactlyInAnyOrder(new Move(coords, coords.plus(-2, 1)));
-        assertThat(moves).containsExactlyInAnyOrder(new Move(coords, coords.plus(-2, -1)));
+        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(-1, -2)));
+        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(1, -2)));
+        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(-2, 1)));
+        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(-2, -1)));
+
+        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(-1, -2)));
+        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(1, -2)));
+        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(-2, 1)));
+        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(-2, -1)));
 
     }
 
@@ -41,15 +52,47 @@ public class KnightTest {
         Board board = Board.empty();
 
         Piece whiteKnight = new Knight(PlayerColour.WHITE);
-        Coordinates coords = new Coordinates(1, 1);
-        board.placePiece(coords, whiteKnight);
+        Coordinates whiteCoords = new Coordinates(1, 1);
+        board.placePiece(whiteCoords, whiteKnight);
+
+        Piece blackKnight = new Knight(PlayerColour.BLACK);
+        Coordinates blackCoords = new Coordinates(6, 6);
+        board.placePiece(blackCoords, blackKnight);
 
         // Act
-        List<Move> moves = whiteKnight.getAllowedMoves(coords, board);
+        List<Move> whiteMoves = whiteKnight.getAllowedMoves(whiteCoords, board);
+        List<Move> blackMoves = blackKnight.getAllowedMoves(blackCoords, board);
 
         // Assert
-        assertThat(moves).doesNotContain(new Move(coords, coords.plus(-2, -1)));
-        assertThat(moves).doesNotContain(new Move(coords, coords.plus(-1, -2)));
+        assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(-2, -1)));
+        assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(-1, -2)));
+        assertThat(blackMoves).doesNotContain(new Move(blackCoords, blackCoords.plus(2, 1)));
+        assertThat(blackMoves).doesNotContain(new Move(blackCoords, blackCoords.plus(1, 2)));
+
+    }
+
+    @Test
+    public void knightCannotMoveOntoFriendlySpace () {
+
+        // Arrange
+        Board board = Board.empty();
+
+        Piece whiteKnight = new Knight(PlayerColour.WHITE);
+        Coordinates whiteCoords = new Coordinates(2, 2);
+        board.placePiece(whiteCoords, whiteKnight);
+
+        Piece whiteKnight2 = new Knight(PlayerColour.WHITE);
+        Coordinates whiteCoords2 = new Coordinates(3, 4);
+        board.placePiece(whiteCoords2, whiteKnight);
+
+
+        // Act
+        List<Move> whiteMoves = whiteKnight.getAllowedMoves(whiteCoords, board);
+        List<Move> whiteMoves2 = whiteKnight2.getAllowedMoves(whiteCoords2, board);
+
+        // Assert
+        assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(1, 2)));
+        assertThat(whiteMoves2).doesNotContain(new Move(whiteCoords2, whiteCoords2.plus(-1, -2)));
 
     }
 
