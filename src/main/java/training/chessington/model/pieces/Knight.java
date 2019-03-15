@@ -15,6 +15,12 @@ public class Knight extends AbstractPiece {
 
     @Override
     public List<Move> getAllowedMoves(Coordinates from, Board board) {
-        return new ArrayList<>();
+
+        List <Move> allowedMoves = new ArrayList<>();
+
+
+
+        return allowedMoves;
+
     }
 }
