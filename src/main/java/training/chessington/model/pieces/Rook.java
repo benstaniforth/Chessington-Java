@@ -32,7 +32,7 @@ public class Rook extends AbstractPiece {
                 break;
             }
         }
-        
+
         for (int i = 1; i < 8; i++) {
             if (moveIsInBounds(from.plus(-i, 0), board)) {
                 if (spaceIsEmpty(from.plus(-i, 0), board)) {

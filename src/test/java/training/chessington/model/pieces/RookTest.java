@@ -159,4 +159,23 @@ public class RookTest {
 
     }
 
+    @Test
+    public void doesNotMoveOffBoard () {
+
+        // Arrange
+        Board board = Board.empty();
+
+        Piece whiteRook = new Rook(PlayerColour.WHITE);
+        Coordinates whiteCoords = new Coordinates(1, 0);
+        board.placePiece(whiteCoords, whiteRook);
+
+        // Act
+        List<Move> whiteMoves = whiteRook.getAllowedMoves(whiteCoords, board);
+
+        // Assert
+        assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(-2, 0)));
+        assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(0, -1)));
+
+    }
+
 }

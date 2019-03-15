@@ -16,11 +16,42 @@ public class Knight extends AbstractPiece {
     @Override
     public List<Move> getAllowedMoves(Coordinates from, Board board) {
 
-        List <Move> allowedMoves = new ArrayList<>();
+        List<Move> allowedMoves = new ArrayList<>();
 
-
+        if (moveIsAllowed(from.plus(-2, -1), board)) {
+            allowedMoves.add(new Move(from, from.plus(-2, -1)));
+        }
+        if (moveIsAllowed(from.plus(-2, 1), board)) {
+            allowedMoves.add(new Move(from, from.plus(-2, 1)));
+        }
+        if (moveIsAllowed(from.plus(-1, -2), board)) {
+            allowedMoves.add(new Move(from, from.plus(-1, -2)));
+        }
+        if (moveIsAllowed(from.plus(-1, 2), board)) {
+            allowedMoves.add(new Move(from, from.plus(-1, -2)));
+        }
+        if (moveIsAllowed(from.plus(1, -2), board)) {
+            allowedMoves.add(new Move(from, from.plus(1, -2)));
+        }
+        if (moveIsAllowed(from.plus(1, 2), board)) {
+            allowedMoves.add(new Move(from, from.plus(1, 2)));
+        }
+        if (moveIsAllowed(from.plus(2, -1), board)) {
+            allowedMoves.add(new Move(from, from.plus(2, -1)));
+        }
+        if (moveIsAllowed(from.plus(2, 1), board)) {
+            allowedMoves.add(new Move(from, from.plus(2, 1)));
+        }
 
         return allowedMoves;
 
     }
+
+    public boolean moveIsAllowed(Coordinates to, Board board) {
+        if (!(to.getCol() >= 0 && to.getCol() <= 7 && to.getRow() >= 0 && to.getRow() <= 7)) {
+            return false;
+        }
+        return board.get(to) == null || !board.get(to).getColour().equals(colour);
+    }
+
 }
