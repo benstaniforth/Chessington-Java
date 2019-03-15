@@ -33,15 +33,15 @@ public class KnightTest {
         List<Move> blackMoves = blackKnight.getAllowedMoves(blackCoords, board);
 
         // Assert
-        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(-1, -2)));
-        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(1, -2)));
-        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(-2, 1)));
-        assertThat(whiteMoves).containsExactlyInAnyOrder(new Move(whiteCoords, whiteCoords.plus(-2, -1)));
+        assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(-1, -2)));
+        assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(1, -2)));
+        assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(-2, 1)));
+        assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(-2, -1)));
 
-        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(-1, -2)));
-        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(1, -2)));
-        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(-2, 1)));
-        assertThat(blackMoves).containsExactlyInAnyOrder(new Move(blackCoords, blackCoords.plus(-2, -1)));
+        assertThat(blackMoves).contains(new Move(blackCoords, blackCoords.plus(-1, -2)));
+        assertThat(blackMoves).contains(new Move(blackCoords, blackCoords.plus(1, -2)));
+        assertThat(blackMoves).contains(new Move(blackCoords, blackCoords.plus(-2, 1)));
+        assertThat(blackMoves).contains(new Move(blackCoords, blackCoords.plus(-2, -1)));
 
     }
 
@@ -56,7 +56,7 @@ public class KnightTest {
         board.placePiece(whiteCoords, whiteKnight);
 
         Piece blackKnight = new Knight(PlayerColour.BLACK);
-        Coordinates blackCoords = new Coordinates(6, 6);
+        Coordinates blackCoords = new Coordinates(7, 7);
         board.placePiece(blackCoords, blackKnight);
 
         // Act

@@ -28,7 +28,7 @@ public class Knight extends AbstractPiece {
             allowedMoves.add(new Move(from, from.plus(-1, -2)));
         }
         if (moveIsAllowed(from.plus(-1, 2), board)) {
-            allowedMoves.add(new Move(from, from.plus(-1, -2)));
+            allowedMoves.add(new Move(from, from.plus(-1, 2)));
         }
         if (moveIsAllowed(from.plus(1, -2), board)) {
             allowedMoves.add(new Move(from, from.plus(1, -2)));
