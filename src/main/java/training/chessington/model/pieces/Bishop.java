@@ -83,24 +83,4 @@ public class Bishop extends AbstractPiece {
 
     }
 
-    public boolean moveIsInBounds(Coordinates to, Board board) {
-        return (to.getCol() >= 0 && to.getCol() <= 7 && to.getRow() >= 0 && to.getRow() <= 7);
-    }
-
-    public boolean spaceIsEmpty(Coordinates to, Board board) {
-
-        return board.get(to) == null;
-    }
-
-    public boolean spaceContainsFriendly(Coordinates to, Board board) {
-
-        return board.get(to).getColour().equals(colour);
-
-    }
-
-    public boolean spaceContainsEnemyThatCanBeTaken(Coordinates to, Board board) {
-
-        return !board.get(to).getColour().equals(colour);
-
-    }
 }

@@ -47,11 +47,5 @@ public class Knight extends AbstractPiece {
 
     }
 
-    public boolean moveIsAllowed(Coordinates to, Board board) {
-        if (!(to.getCol() >= 0 && to.getCol() <= 7 && to.getRow() >= 0 && to.getRow() <= 7)) {
-            return false;
-        }
-        return board.get(to) == null || !board.get(to).getColour().equals(colour);
-    }
 
 }
