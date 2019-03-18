@@ -18,66 +18,11 @@ public class Bishop extends AbstractPiece {
 
         List<Move> allowedMoves = new ArrayList<>();
 
-        for (int i = 1; i < 8; i++) {
-            if (moveIsInBounds(from.plus(i, i), board)) {
-                if (spaceIsEmpty(from.plus(i, i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(i, i)));
-                } else if (spaceContainsEnemyThatCanBeTaken(from.plus(i, i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(i, i)));
-                    break;
-                } else if (spaceContainsFriendly(from.plus(i, i), board)) {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
+        allowedMoves.addAll(straightMoves(from, board, 1, 1));
+        allowedMoves.addAll(straightMoves(from, board, -1,-1));
+        allowedMoves.addAll(straightMoves(from, board, 1, -1));
+        allowedMoves.addAll(straightMoves(from, board, -1, 1));
 
-        for (int i = 1; i < 8; i++) {
-            if (moveIsInBounds(from.plus(-i, -i), board)) {
-                if (spaceIsEmpty(from.plus(-i, -i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(-i, -i)));
-                } else if (spaceContainsEnemyThatCanBeTaken(from.plus(-i, -i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(-i, -i)));
-                    break;
-                } else if (spaceContainsFriendly(from.plus(-i, -i), board)) {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
-        for (int i = 1; i < 8; i++) {
-            if (moveIsInBounds(from.plus(-i, i), board)) {
-                if (spaceIsEmpty(from.plus(-i, i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(-i, i)));
-                } else if (spaceContainsEnemyThatCanBeTaken(from.plus(-i, i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(-i, i)));
-                    break;
-                } else if (spaceContainsFriendly(from.plus(-i, i), board)) {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
-        for (int i = 1; i < 8; i++) {
-
-            if (moveIsInBounds(from.plus(i, -i), board)) {
-                if (spaceIsEmpty(from.plus(i, -i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(i, -i)));
-                } else if (spaceContainsEnemyThatCanBeTaken(from.plus(i, -i), board)) {
-                    allowedMoves.add(new Move(from, from.plus(i, -i)));
-                    break;
-                } else if (spaceContainsFriendly(from.plus(i, -i), board)) {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
 
         return allowedMoves;
 

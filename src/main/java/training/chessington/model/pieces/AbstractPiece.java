@@ -2,7 +2,11 @@ package training.chessington.model.pieces;
 
 import training.chessington.model.Board;
 import training.chessington.model.Coordinates;
+import training.chessington.model.Move;
 import training.chessington.model.PlayerColour;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractPiece implements Piece {
 
@@ -56,6 +60,30 @@ public abstract class AbstractPiece implements Piece {
             return false;
         }
         return board.get(to) == null || !board.get(to).getColour().equals(colour);
+    }
+
+    public List<Move> straightMoves(Coordinates from, Board board, int rowChange, int colChange) {
+
+        List<Move> straightMoves = new ArrayList<>();
+
+        for (int i = 1; i < 8; i++) {
+            Coordinates to = from.plus(rowChange * i, colChange * i);
+
+            if (moveIsInBounds(to, board)) {
+                if (spaceIsEmpty(to, board)) {
+                    straightMoves.add(new Move(from, to));
+                } else if (spaceContainsEnemyThatCanBeTaken(to, board)) {
+                    straightMoves.add(new Move(from, to));
+                    break;
+                } else if (spaceContainsFriendly(to, board)) {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+
+        return straightMoves;
     }
 
 }

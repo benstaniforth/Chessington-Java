@@ -8,7 +8,7 @@ import training.chessington.model.PlayerColour;
 
 import java.util.List;
 
-import static training.chessington.model.pieces.PieceAssert.*;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class KingTest {
