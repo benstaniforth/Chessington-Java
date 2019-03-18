@@ -86,4 +86,19 @@ public abstract class AbstractPiece implements Piece {
         return straightMoves;
     }
 
+    public List<Move> kingMoves (Coordinates from, Board board, int rowChange, int colChange) {
+
+        List<Move> kingMoves = new ArrayList<>();
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if ((i != 0 || j != 0) && (moveIsAllowed(from.plus(rowChange, colChange), board))){
+                    kingMoves.add(new Move(from, from.plus(rowChange, colChange)));
+                }
+            }
+        }
+
+        return kingMoves;
+    }
+
 }

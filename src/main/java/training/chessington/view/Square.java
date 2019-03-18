@@ -18,7 +18,7 @@ public class Square extends Parent {
     private Text text;
 
     public enum SquareColour {
-        WHITE(Color.WHITE), CORAL(Color.CORAL);
+        WHITE(Color.WHITE), BLACK(Color.DARKGRAY);
 
         private final Color color;
 
@@ -41,7 +41,7 @@ public class Square extends Parent {
     }
 
     private void createBackground() {
-        SquareColour colour = (((coordinates.getRow() + coordinates.getCol()) % 2) == 0) ? SquareColour.WHITE : SquareColour.CORAL;
+        SquareColour colour = (((coordinates.getRow() + coordinates.getCol()) % 2) == 0) ? SquareColour.WHITE : SquareColour.BLACK;
         background = new Rectangle(50, 50, colour.getColor());
         background.setStrokeType(StrokeType.INSIDE);
         background.setStrokeWidth(3);
