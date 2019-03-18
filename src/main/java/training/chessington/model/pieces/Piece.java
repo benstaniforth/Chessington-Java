@@ -10,7 +10,8 @@ public interface Piece {
     }
 
     PieceType getType();
+
     PlayerColour getColour();
 
-    List<Move> getAllowedMoves(Coordinates from, Board board);
+    List<Move> getAllowedMoves(Coordinates from, Board board, Game game);
 }

@@ -1,16 +1,10 @@
 package training.chessington.model.pieces;
 
-import javafx.beans.binding.When;
 import org.junit.Test;
-import training.chessington.model.Board;
-import training.chessington.model.Coordinates;
-import training.chessington.model.Move;
-import training.chessington.model.PlayerColour;
+import training.chessington.model.*;
 
-import javax.swing.*;
 import java.util.List;
 
-import static training.chessington.model.pieces.PieceAssert.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class BishopTest {
@@ -20,6 +14,7 @@ public class BishopTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteBishop = new Bishop(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(2, 2);
@@ -30,8 +25,8 @@ public class BishopTest {
         board.placePiece(blackCoords, blackBishop);
 
         // Act
-        List<Move> whiteMoves = whiteBishop.getAllowedMoves(whiteCoords, board);
-        List<Move> blackMoves = blackBishop.getAllowedMoves(blackCoords, board);
+        List<Move> whiteMoves = whiteBishop.getAllowedMoves(whiteCoords, board, game);
+        List<Move> blackMoves = blackBishop.getAllowedMoves(blackCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(2, 2)));
@@ -50,13 +45,14 @@ public class BishopTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteBishop = new Bishop(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(1, 1);
         board.placePiece(whiteCoords, whiteBishop);
 
         // Act
-        List<Move> whiteMoves = whiteBishop.getAllowedMoves(whiteCoords, board);
+        List<Move> whiteMoves = whiteBishop.getAllowedMoves(whiteCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(-3, -3)));
@@ -69,6 +65,7 @@ public class BishopTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteBishop = new Bishop(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(2, 2);
@@ -79,8 +76,8 @@ public class BishopTest {
         board.placePiece(blackCoords, blackBishop);
 
         // Act
-        List<Move> whiteMoves = whiteBishop.getAllowedMoves(whiteCoords, board);
-        List<Move> blackMoves = blackBishop.getAllowedMoves(blackCoords, board);
+        List<Move> whiteMoves = whiteBishop.getAllowedMoves(whiteCoords, board, game);
+        List<Move> blackMoves = blackBishop.getAllowedMoves(blackCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(3, 3)));
@@ -93,6 +90,7 @@ public class BishopTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece blackBishop = new Bishop(PlayerColour.BLACK);
         Coordinates blackCoords = new Coordinates(2, 5);
@@ -103,8 +101,8 @@ public class BishopTest {
         board.placePiece(blackCoords2, blackBishop2);
 
         // Act
-        List<Move> blackMoves = blackBishop.getAllowedMoves(blackCoords, board);
-        List<Move> blackMoves2 = blackBishop2.getAllowedMoves(blackCoords2, board);
+        List<Move> blackMoves = blackBishop.getAllowedMoves(blackCoords, board, game);
+        List<Move> blackMoves2 = blackBishop2.getAllowedMoves(blackCoords2, board, game);
 
         // Assert
         assertThat(blackMoves).doesNotContain(new Move(blackCoords, blackCoords.plus(-4, 4)));

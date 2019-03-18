@@ -1,14 +1,10 @@
 package training.chessington.model.pieces;
 
 import org.junit.Test;
-import training.chessington.model.Board;
-import training.chessington.model.Coordinates;
-import training.chessington.model.Move;
-import training.chessington.model.PlayerColour;
+import training.chessington.model.*;
 
 import java.util.List;
 
-import static training.chessington.model.pieces.PieceAssert.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class QueenTest {
@@ -18,13 +14,14 @@ public class QueenTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteQueen = new Queen(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(3, 3);
         board.placePiece(whiteCoords, whiteQueen);
 
         // Act
-        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board);
+        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(-3, 0)));
@@ -39,13 +36,14 @@ public class QueenTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteQueen = new Queen(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(3, 3);
         board.placePiece(whiteCoords, whiteQueen);
 
         // Act
-        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board);
+        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(-3, -3)));
@@ -59,13 +57,14 @@ public class QueenTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteQueen = new Queen(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(1, 1);
         board.placePiece(whiteCoords, whiteQueen);
 
         // Act
-        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board);
+        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(-2, -2)));
@@ -80,6 +79,7 @@ public class QueenTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteQueen = new Queen(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(1, 1);
@@ -90,8 +90,8 @@ public class QueenTest {
         board.placePiece(blackCoords, blackQueen);
 
         // Act
-        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board);
-        List<Move> blackMoves = blackQueen.getAllowedMoves(blackCoords, board);
+        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board, game);
+        List<Move> blackMoves = blackQueen.getAllowedMoves(blackCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).contains(new Move(whiteCoords, whiteCoords.plus(3, 3)));
@@ -105,6 +105,7 @@ public class QueenTest {
 
         // Arrange
         Board board = Board.empty();
+        Game game = new Game(board);
 
         Piece whiteQueen = new Queen(PlayerColour.WHITE);
         Coordinates whiteCoords = new Coordinates(4, 1);
@@ -119,7 +120,7 @@ public class QueenTest {
         board.placePiece(whiteCoords3, whiteQueen3);
 
         // Act
-        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board);
+        List<Move> whiteMoves = whiteQueen.getAllowedMoves(whiteCoords, board, game);
 
         // Assert
         assertThat(whiteMoves).doesNotContain(new Move(whiteCoords, whiteCoords.plus(-3, 0)));
