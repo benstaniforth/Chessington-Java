@@ -13,12 +13,18 @@ public class Game {
 
     private boolean isEnded = false;
 
+    private List<Move> movesSoFar = new ArrayList<>();
+
     public Game(Board board) {
         this.board = board;
     }
 
     public Piece pieceAt(int row, int col) {
         return board.get(new Coordinates(row, col));
+    }
+
+    public List<Move> getMovesSoFar() {
+        return movesSoFar;
     }
 
     public List<Move> getAllowedMoves(Coordinates from) {
@@ -56,6 +62,7 @@ public class Game {
         }
 
         board.move(from, to);
+        movesSoFar.add(move);
         nextPlayer = nextPlayer == PlayerColour.WHITE ? PlayerColour.BLACK : PlayerColour.WHITE;
     }
 
