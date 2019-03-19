@@ -15,6 +15,10 @@ public class Game {
 
     private List<Move> movesSoFar = new ArrayList<>();
 
+    private Piece type;
+
+    public Piece getType() { return type; }
+
     public Game(Board board) {
         this.board = board;
     }

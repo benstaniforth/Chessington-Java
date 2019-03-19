@@ -59,5 +59,14 @@ public class Pawn extends AbstractPiece {
 
     }
 
+    public boolean enPassant (Coordinates from, Game game, Board board, List<Move> movesSoFar) {
+
+        Move lastMove = movesSoFar.get(movesSoFar.size()-1);
+
+
+        return true;
+
+    }
+
 
 }
